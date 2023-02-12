@@ -1,19 +1,33 @@
-(function myFN() {
-  console.log("Hello world");
-})();
+const messsage = "HELLO WORLD"; // Global variable
 
-myFN();
+if (true) {
+  // Code block
 
-const app = (function () {
-  // private => bên ngoài không thể truy cập trực tiếp làm hỏng ứng dụng của các bạn được
-  const cars = [];
+  const fullName = "Le Ngoai Ngu";
+  console.log(fullName);
+}
 
-  return {
-    add(car) {
-      cars.push(car);
-    },
-    getCar(index) {
-      return cars[index];
-    },
-  };
-})();
+// Local scope
+function logger() {
+  var fullName = "Son Dang";
+  console.log(fullName); // có thể truy cập
+}
+
+// Biến được tham chiếu bởi một hàm
+
+function makeCounter() {
+  let counter = 0;
+
+  function increase() {
+    return counter++;
+  }
+
+  return increase;
+}
+
+const increase1 = makeCounter(); // tham chiếu đến một hàm ở bên trong hàm
+
+console.log(increase1()); // 0
+console.log(increase1()); // 1
+console.log(increase1()); // 2
+console.log(increase1()); // 3
