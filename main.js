@@ -5,16 +5,11 @@ this.lastName = "Thu";
 const teacher = {
   firstName: "Minh",
   lastName: "Thao",
-  getFullName() {
+  getFullName(fullName1, fullName2) {
+    console.log(fullName1, fullName2);
     return `${this.firstName} ${this.lastName}`;
   },
 };
 
-// case 1:
-console.log(teacher.getFullName()); // Minh thảo
-
-// case 2:
-const getTeacherName = teacher.getFullName.bind(teacher);
-console.log(getTeacherName()); // Minh Thảo
-
-console.log(teacher.getFullName === getTeacherName); // return false
+const getTeacherName = teacher.getFullName.bind(teacher, "data1", "data2"); // dữ liệu này sẽ override bên dưới.
+console.log(getTeacherName("Full Name", "Hello"));
