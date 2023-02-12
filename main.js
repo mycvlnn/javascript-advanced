@@ -1,33 +1,47 @@
-const messsage = "HELLO WORLD"; // Global variable
-
-if (true) {
-  // Code block
-
-  const fullName = "Le Ngoai Ngu";
-  console.log(fullName);
+// Ứng dụng closure viết code ngắn hơn
+function createLogger(prefix) {
+  return function (message) {
+    return `[${prefix}]: ${message}`;
+  };
 }
 
-// Local scope
-function logger() {
-  var fullName = "Son Dang";
-  console.log(fullName); // có thể truy cập
-}
+const loggerInfo = createLogger("Info");
 
-// Biến được tham chiếu bởi một hàm
+console.log(loggerInfo("Logger is running...")); // [Info]: Logger is running...
+console.log(loggerInfo("Register running...")); // [Info]: Register running...
+console.log(loggerInfo("Submit user...")); // [Info]: Submit user...
 
-function makeCounter() {
-  let counter = 0;
+// Ứng dụng 2: hàm lưu dữ liệu vào local storage
 
-  function increase() {
-    return counter++;
+function createStorage(keyStorage) {
+  let storage = JSON.parse(localStorage.getItem(keyStorage)) ?? {}; // private: bên ngoài không thể truy cập
+
+  // private bên ngoài không thể truy cập
+  function save() {
+    localStorage.setItem(keyStorage, JSON.stringify(storage));
   }
 
-  return increase;
+  // chỉ public những gì an toàn ra bên ngoài
+  return {
+    get(key) {
+      return storage[key];
+    },
+    set(key, value) {
+      storage[key] = value;
+      save();
+    },
+
+    del(key) {
+      delete storage[key];
+      save();
+    },
+  };
 }
 
-const increase1 = makeCounter(); // tham chiếu đến một hàm ở bên trong hàm
+const infoUser = createStorage("infoUser");
 
-console.log(increase1()); // 0
-console.log(increase1()); // 1
-console.log(increase1()); // 2
-console.log(increase1()); // 3
+console.log(infoUser.get("fullName"));
+
+infoUser.set("fullName", "CHris");
+infoUser.set("age", 18);
+infoUser.del("age");
