@@ -1,7 +1,16 @@
 // call()  method
 
-function random() {
-  console.log(Math.random());
-}
+const teacher = {
+  firstName: "Minh",
+  lastName: "Thu",
+  showFullName() {
+    console.log(`${this.firstName} ${this.lastName}`);
+  },
+};
 
-random();
+const me = {
+  firstName: "Lee",
+  lastName: "Chris",
+};
+
+teacher.showFullName.call(me);
