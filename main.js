@@ -1,11 +1,14 @@
 // call()  method
-"use strict";
 
-this.firstName = "Lee";
-this.lastName = "Chris";
-
-function showFullName() {
-  console.log(`${this.firstName} ${this.lastName}`);
+function Animal(name, weight) {
+  this.name = name;
+  this.weight = weight;
 }
 
-showFullName.call(this);
+function Chicken(name, weight, legs) {
+  Animal.call(this, name, weight); // kế thừa lại được thuộc tính của Animal
+  this.legs = legs;
+}
+
+const gaMai = new Chicken("Ga mai mo", 2, 2);
+console.log(gaMai);
