@@ -1,16 +1,11 @@
 // call()  method
+"use strict";
 
-const teacher = {
-  firstName: "Minh",
-  lastName: "Thu",
-  showFullName() {
-    console.log(`${this.firstName} ${this.lastName}`);
-  },
-};
+this.firstName = "Lee";
+this.lastName = "Chris";
 
-const me = {
-  firstName: "Lee",
-  lastName: "Chris",
-};
+function showFullName() {
+  console.log(`${this.firstName} ${this.lastName}`);
+}
 
-teacher.showFullName.call(me);
+showFullName.call(this);
