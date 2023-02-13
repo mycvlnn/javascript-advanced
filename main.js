@@ -1,9 +1,18 @@
-// call()  method
+// apply()  method
 
-function logger() {
-  const newArr = Array.prototype.slice.call(arguments); // Sử dụng để convert sang mảng.
+const teacher = {
+  firstName: "chris",
+  lastName: "Leee",
+  showFullName(hobby) {
+    console.log(`${this.firstName} ${this.lastName} like ${hobby}`);
+  },
+};
 
-  console.log({ newArr });
-}
+teacher.showFullName("Play game");
 
-logger(1, 2, 3, 4);
+const me = {
+  firstName: "Lê",
+  lastName: "Ngữ",
+};
+
+teacher.showFullName.apply(me, ["Read book"]);
