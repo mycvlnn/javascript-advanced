@@ -1,17 +1,12 @@
 import html from "./lib/core.js";
-import { connect } from "./redux/store.js";
+import Header from "./components/Header.js";
+import TodoList from "./components/TodoList.js";
+import Footer from "./components/Footer.js";
 
-function App(props) {
-  console.log(props);
-
+function App() {
   return html`
-    <h1>Build Reactjs Library</h1>
-    <p>Hello world</p>
+    <section class="todoapp">${Header()} ${TodoList()} ${Footer()}</section>
   `;
 }
 
-const mapStateToProps = (state) => {
-  return state;
-};
-
-export default connect(mapStateToProps)(App);
+export default App;
